@@ -31,7 +31,7 @@ btn.addEventListener('click', function() {
     mainCountry(country);
 });
 
-// funkcija sukuria html kodo dalį, kuri talpins informaciją apie šalį, ir patalpiną ją į index.html
+// funkcija sukuria html kodo dalį, kuri talpins informaciją apie šalį, ir patalpiną ją į index.html 
 function renderCountry(data, countryClass) {
     const html = `
     <article class="${countryClass}">
@@ -42,9 +42,13 @@ function renderCountry(data, countryClass) {
       <p class="country__row"><span>👫</span>${(data.population / 1000000).toFixed(2)} million people</p>
       <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
       <p class="country__row"><span>💰</span>${data.currencies[0].symbol}</p>
+      <p class="country__row"><span>🏛️</span>${data.capital}</p>
+      <p class="country__row"><span>🌎</span>${data.region}</p>
+      <p class="country__row"><span>🇪🇺</span>${data.regionalBlocs[0].name}</p>
+      <p class="country__row"><span>⏰</span>${data.timezones[0]}</p> 
     </div>
   </article>
-    `;
+    `; 
     countriesContainer.insertAdjacentHTML('beforeend', html);
     countriesContainer.style.opacity = 1;
 }
