@@ -63,19 +63,22 @@ async function fetchNeighbor(neighborUrl) {
 
 // Funkcija paima ir atvaizduoja duomenis apie pagrindinę šalis
 async function mainCountry(country) {
-    url = `https://restcountries.eu/rest/v2/name/${country}`;
-    console.log(url);
+    try {
+        url = `https://restcountries.eu/rest/v2/name/${country}`;
+        console.log(url);
 
-    let fetchData = await fetch(url);
-    let data = await fetchData.json();
-    console.log('Pagrindinė šalis:', data);
-    data = data[0];
-    renderCountry(data, countryClass); 
-    neighbors = data.borders;  
+        let fetchData = await fetch(url);
+        let data = await fetchData.json();
+        console.log('Pagrindinė šalis:', data);
+        data = data[0];
+        renderCountry(data, countryClass);
+        neighbors = data.borders;
 
-    for (let neighborCountry of neighbors) {  
-        console.log('Kaimynas:', neighborCountry);
-        neighborUrl = `https://restcountries.eu/rest/v2/alpha/${neighborCountry}`;
-        fetchNeighbor(neighborUrl); 
-    };        
+        for (let neighborCountry of neighbors) {
+            console.log('Kaimynas:', neighborCountry);
+            neighborUrl = `https://restcountries.eu/rest/v2/alpha/${neighborCountry}`;
+            fetchNeighbor(neighborUrl);
+        };
+    } catch(error) {console.log(alert (`Nėra tokios šalies, įveskite iš naujo!`));}
+         
 }
